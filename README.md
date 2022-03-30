@@ -2,6 +2,8 @@
 
 # Listas Ligadas <!-- omit in toc -->
 
+- [Atualização do repositório](#atualização-do-repositório)
+- [Testes unitários](#testes-unitários)
 - [Utilização de memória pela lista simplesmente ligada](#utilização-de-memória-pela-lista-simplesmente-ligada)
   - [Criação da lista](#criação-da-lista)
   - [Inserir o primeiro elemento ao final da lista](#inserir-o-primeiro-elemento-ao-final-da-lista)
@@ -9,6 +11,32 @@
   - [Inserir o terceiro elemento ao final da lista](#inserir-o-terceiro-elemento-ao-final-da-lista)
 - [Operações da lista simplesmente ligada](#operações-da-lista-simplesmente-ligada)
   - [Inserção no final da lista](#inserção-no-final-da-lista)
+
+## Atualização do repositório
+
+Para obter as alterações mais recentes ao repositório é necessário:
+
+1. Registar o repositório como referência remota `upstream`:
+
+        git remote add upstream https://github.com/IADE-PA/lists
+
+2. Obter as alterações para a máquina local:
+
+        git fetch upstream
+
+3. Propagar as alterações para o repositório local:
+
+        git checkout upstream/main .
+
+## Testes unitários
+
+A bateria de testes unitários pode ser executada com
+
+        make tests
+
+O relatório de cobertura pode ser construído com
+
+        make cov
 
 ## Utilização de memória pela lista simplesmente ligada
 

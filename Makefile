@@ -2,6 +2,7 @@ BUILD:=release
 BUILD:=debug
 BUILD:=debug_cov
 
+CC=gcc
 SRC=./src
 BIN=./bin
 TESTS_SRC=./tests
