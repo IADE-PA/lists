@@ -16,7 +16,7 @@ void list_destroy(List list);
 bool list_is_empty(List list);
 
 // Returns the number of elements in the list.
-int list_size(List list);
+size_t list_size(List list);
 
 // Returns the first element of the list.
 void* list_get_first(List list);
