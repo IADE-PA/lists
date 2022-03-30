@@ -36,10 +36,6 @@ A bateria de testes unitários pode ser executada com
 
         make tests
 
-O relatório de cobertura pode ser construído com
-
-        make cov
-
 ## Utilização de memória pela lista simplesmente ligada
 
 Vamos considerar um cenário de utilização da lista simplesmente ligada, com o detalhe fundamental das consequências das várias operações na memória É também apresentado um diagrama com o estado atual da lista, no ponto de vista do utilizador.
