@@ -1,3 +1,5 @@
+![Tests](https://github.com/IADE-PA/lists/workflows/Tests/badge.svg)
+
 # Programação e Algoritmos - IADE UE <!-- omit in toc -->
 
 # Listas Ligadas <!-- omit in toc -->
