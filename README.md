@@ -1,4 +1,4 @@
-[![Tests](https://github.com/IADE-PA/lists/workflows/Tests/badge.svg)](https://github.com/IADE-PA/lists/actions/workflows/Tests.yml)
+[![Tests](https://github.com/IADE-PA/lists/actions/workflows/Tests.yml/badge.svg)](https://github.com/IADE-PA/lists/actions/workflows/Tests.yml)
 
 # Programação e Algoritmos - IADE UE <!-- omit in toc -->
 
