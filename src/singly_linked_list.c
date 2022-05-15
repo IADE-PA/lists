@@ -89,10 +89,10 @@ void* list_get(List list, size_t position) {
 // first occurrence of the specified element,
 // or -1 if the specified element does not
 // occur in the list.
-int list_find(List list, void* element) {
+int list_find(List list, bool (*equal)(void*, void*), void* element) {
     Node node = list->head;
     for (size_t i = 0; i < list->size; i++) {
-        if (node->element == element) {
+        if (equal(node->element, element)) {
             return i;
         }
         node = node->next;
@@ -216,4 +216,13 @@ void list_make_empty(List list) {
     list->head = NULL;
     list->tail = NULL;
     list->size = 0;
+}
+
+// Returns an array with the elements of the list.
+void list_to_array(List list, void** out_array) {
+    Node node = list->head;
+    for (size_t i = 0; i < list->size; i++) {
+        out_array[i] = node->element;
+        node = node->next;
+    }
 }

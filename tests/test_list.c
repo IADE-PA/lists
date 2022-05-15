@@ -19,6 +19,10 @@ void tearDown(void) {
  Helper functions.
  ******************************************************************************/
 
+bool is_equal(void* a, void* b) {
+    return a == b;
+}
+
 void insert_numbers(int start, int end) {
     for (int i = start - 1; i < end; i++) {
         list_insert_last(list, &numbers[i]);
@@ -82,10 +86,10 @@ void test_list_get() {
 }
 
 void test_list_find() {
-    TEST_ASSERT_EQUAL(-1, list_find(list, number_address_of(1)));
+    TEST_ASSERT_EQUAL(-1, list_find(list, is_equal, number_address_of(1)));
     insert_numbers(1, 5);
-    TEST_ASSERT_EQUAL(2, list_find(list, number_address_of(3)));
-    TEST_ASSERT_EQUAL(-1, list_find(list, number_address_of(10)));
+    TEST_ASSERT_EQUAL(2, list_find(list, is_equal, number_address_of(3)));
+    TEST_ASSERT_EQUAL(-1, list_find(list, is_equal, number_address_of(10)));
 }
 
 void test_list_insert_first() {
@@ -170,6 +174,15 @@ void test_list_make_empty() {
     TEST_ASSERT_EQUAL(0, list_size(list));
 }
 
+void test_list_to_array() {
+    insert_strings(1,3);
+    char* array[3];
+    list_to_array(list, (void**)array);
+    TEST_ASSERT_EQUAL(string_address_of(1), array[0]);
+    TEST_ASSERT_EQUAL(string_address_of(2), array[1]);
+    TEST_ASSERT_EQUAL(string_address_of(3), array[2]);
+}
+
 int main(void) {
     UNITY_BEGIN();
     RUN_TEST(test_list_is_empty);
@@ -185,5 +198,6 @@ int main(void) {
     RUN_TEST(test_list_remove_last);
     RUN_TEST(test_list_remove);
     RUN_TEST(test_list_make_empty);
+    RUN_TEST(test_list_to_array);
     return UNITY_END();
 }

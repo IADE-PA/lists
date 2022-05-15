@@ -4,7 +4,7 @@
 #include <stdbool.h>
 #include <stddef.h>
 
-typedef struct List_ *List;
+typedef struct List_* List;
 
 // Creates a new list.
 List list_create();
@@ -32,7 +32,7 @@ void* list_get(List list, size_t position);
 // first occurrence of the specified element,
 // or -1 if the specified element does not
 // occur in the list.
-int list_find(List list, void* element);
+int list_find(List list, bool (*equal)(void*, void*), void* element);
 
 // Inserts the specified element at the first position in the list.
 void list_insert_first(List list, void* element);
@@ -58,5 +58,8 @@ void* list_remove(List list, size_t position);
 
 // Removes all elements from the list.
 void list_make_empty(List list);
+
+// Returns an array with the elements of the list.
+void list_to_array(List list, void** out_array);
 
 #endif
