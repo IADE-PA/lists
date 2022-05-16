@@ -10,7 +10,7 @@ typedef struct List_* List;
 List list_create();
 
 // Destroys a list.
-void list_destroy(List list);
+void list_destroy(List list, bool free_elements, void (*free_element)(void*));
 
 // Returns true iff the list contains no elements.
 bool list_is_empty(List list);
@@ -57,7 +57,7 @@ void* list_remove_last(List list);
 void* list_remove(List list, size_t position);
 
 // Removes all elements from the list.
-void list_make_empty(List list);
+void list_make_empty(List list, bool free_elements, void (*free_element)(void*));
 
 // Returns an array with the elements of the list.
 void list_to_array(List list, void** out_array);

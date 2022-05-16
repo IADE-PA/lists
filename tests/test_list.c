@@ -2,6 +2,10 @@
 
 #include "../src/list.h"
 
+#include <string.h>
+#include <stdlib.h>
+// #include <mcheck.h>
+
 List list;
 
 int numbers[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
@@ -12,7 +16,7 @@ void setUp(void) {
 }
 
 void tearDown(void) {
-    list_destroy(list);
+    list_destroy(list, false, NULL);
 }
 
 /*******************************************************************************
@@ -169,9 +173,21 @@ void test_list_make_empty() {
     insert_numbers(1,3);
     insert_strings(4,7);
     TEST_ASSERT_FALSE(list_is_empty(list));
-    list_make_empty(list);
+    list_make_empty(list, false, NULL);
     TEST_ASSERT_TRUE(list_is_empty(list));
     TEST_ASSERT_EQUAL(0, list_size(list));
+}
+
+void free_str(void *str) {
+    free(str);
+}
+
+void test_list_make_empty_free_elements() {
+    // mtrace();
+    char* str = malloc(sizeof(char)*10);
+    strcpy(str, "test");
+    list_insert_last(list, str);
+    list_make_empty(list, true, free_str);
 }
 
 void test_list_to_array() {
@@ -199,5 +215,6 @@ int main(void) {
     RUN_TEST(test_list_remove);
     RUN_TEST(test_list_make_empty);
     RUN_TEST(test_list_to_array);
+    RUN_TEST(test_list_make_empty_free_elements);
     return UNITY_END();
 }
