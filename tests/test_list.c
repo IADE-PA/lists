@@ -16,7 +16,7 @@ void setUp(void) {
 }
 
 void tearDown(void) {
-    list_destroy(list, false, NULL);
+    list_destroy(list, NULL);
 }
 
 /*******************************************************************************
@@ -173,7 +173,7 @@ void test_list_make_empty() {
     insert_numbers(1,3);
     insert_strings(4,7);
     TEST_ASSERT_FALSE(list_is_empty(list));
-    list_make_empty(list, false, NULL);
+    list_make_empty(list, NULL);
     TEST_ASSERT_TRUE(list_is_empty(list));
     TEST_ASSERT_EQUAL(0, list_size(list));
 }
@@ -187,7 +187,7 @@ void test_list_make_empty_free_elements() {
     char* str = malloc(sizeof(char)*10);
     strcpy(str, "test");
     list_insert_last(list, str);
-    list_make_empty(list, true, free_str);
+    list_make_empty(list, free_str);
 }
 
 void test_list_to_array() {

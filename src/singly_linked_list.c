@@ -22,8 +22,8 @@ Node _create_node(void* element) {
     return node;
 }
 
-void _destroy_node(Node node, bool free_elements, void (*free_element)(void*)) {
-    if (free_elements) {
+void _destroy_node(Node node, void (*free_element)(void*)) {
+    if (free_element != NULL) {
         free_element(node->element);
     }
     free(node);
@@ -39,11 +39,11 @@ List list_create() {
 }
 
 // Destroys a list.
-void list_destroy(List list, bool free_elements, void (*free_element)(void*)) {
+void list_destroy(List list, void (*free_element)(void*)) {
     Node node = list->head;
     while (node != NULL) {
         Node next = node->next;
-        _destroy_node(node, free_elements, free_element);
+        _destroy_node(node, free_element);
         node = next;
     }
     free(list);
@@ -161,7 +161,7 @@ void* list_remove_first(List list) {
         list->tail = NULL;
     }
     void* element = node->element;
-    _destroy_node(node, false, NULL);
+    _destroy_node(node, NULL);
     list->size--;
     return element;
 }
@@ -173,7 +173,7 @@ void* list_remove_last(List list) {
     }
     void* element = list->tail->element;
     if (list_size(list) == 1) {
-        list_make_empty(list, false, NULL);
+        list_make_empty(list, NULL);
     } else {
         Node node = list->head;
         while (node->next != list->tail) {
@@ -203,17 +203,17 @@ void* list_remove(List list, size_t position) {
     Node node = prev->next;
     void* element = node->element;
     prev->next = node->next;
-    _destroy_node(node, false, NULL);
+    _destroy_node(node, NULL);
     list->size--;
     return element;
 }
 
 // Removes all elements from the list.
-void list_make_empty(List list, bool free_elements, void (*free_element)(void*)) {
+void list_make_empty(List list, void (*free_element)(void*)) {
     Node node = list->head;
     while (node != NULL) {
         Node next = node->next;
-        _destroy_node(node, free_elements, free_element);
+        _destroy_node(node, free_element);
         node = next;
     }
     list->head = NULL;
